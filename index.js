@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 app.use(cors());
-// app.options("*", cors());
+app.options("*", cors());
 //Require the Router we defined in movies.js
 var movies = require("./movies.js");
 var users = require("./users.js");
