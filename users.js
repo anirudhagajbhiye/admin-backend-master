@@ -94,6 +94,29 @@ router.put("/:id", function (req, res) {
     });
   });
 });
+
+router.delete("/:id", function (req, res) {
+  console.log("I am id=  " + req.params.id);
+
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Pass@123",
+    database: "cart_app",
+  });
+
+  con.connect(function (err) {
+    if (err) throw err;
+    con.query(
+      `DELETE FROM users where id=${req.params.id}`,
+      function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.json({ message: "User Deleted" });
+      }
+    );
+  });
+});
 //Routes will go here
 
 module.exports = router;
